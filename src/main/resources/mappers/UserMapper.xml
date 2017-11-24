@@ -177,4 +177,13 @@
     where username = #{username}
   </select>
 
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    COUNT(1)
+    FROM mall_user
+    WHERE username = #{username}
+    and question = #{question}
+    and answer = #{answer}
+  </select>
+
 </mapper>
