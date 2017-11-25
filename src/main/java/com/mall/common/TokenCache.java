@@ -15,6 +15,8 @@ public class TokenCache{
 
     private static Logger logger = LoggerFactory.getLogger(TokenCache.class);
 
+    public static final String TOKEN_PREFIX = "token_";
+
     //超出容量，LRU算法
     private static LoadingCache<String, String> localCache = CacheBuilder.newBuilder().initialCapacity(1000).maximumSize(10000).expireAfterAccess(12, TimeUnit.HOURS)
             .build(new CacheLoader<String, String>() {
