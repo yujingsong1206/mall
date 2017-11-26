@@ -78,7 +78,7 @@ public class UserServiceImpl implements IUserService {
             if(Const.EMAIL.equals(type)) {
                 int resultCount = userMapper.checkEmail(str);
                 if(resultCount > 0) {
-                    return ServerResponse.createBySuccessMessage("email已存在");
+                    return ServerResponse.createByErrorMessage("email已存在");
                 }
             }
         } else {
@@ -145,12 +145,45 @@ public class UserServiceImpl implements IUserService {
         if(resultCount == 0) {
             return ServerResponse.createByErrorMessage("旧密码错误");
         }
-        user.setPassword(passwordNew);
+        user.setPassword(MD5.getMessageDigest(passwordNew));
         int updateCount = userMapper.updateByPrimaryKeySelective(user);
         if(updateCount > 0) {
             return ServerResponse.createBySuccessMessage("密码修改成功");
         }
         return ServerResponse.createByErrorMessage("修改密码失败");
+    }
+
+    @Override
+    public ServerResponse<User> updateInformation(User user) {
+        /*
+            username不能更新
+            email要进行校验，并且是出去当前用户是否有其他用户和当前这个email重复
+         */
+        int resultCount = userMapper.checkEmailByUserId(user.getEmail(), user.getId());
+        if(resultCount > 0) {
+            return ServerResponse.createByErrorMessage("email已存在");
+        }
+        User updateUser = new User();
+        updateUser.setId(user.getId());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPhone(user.getPhone());
+        updateUser.setQuestion(user.getQuestion());
+        updateUser.setAnswer(user.getAnswer());
+        int updateCount = userMapper.updateByPrimaryKeySelective(updateUser);
+        if(updateCount > 0) {
+            return ServerResponse.createBySuccess("更新个人信息成功", updateUser);
+        }
+        return ServerResponse.createByErrorMessage("更新个人信息失败");
+    }
+
+    @Override
+    public ServerResponse<User> getInformation(Integer userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        if(user == null) {
+            return ServerResponse.createByErrorMessage("找不到当前用户");
+        }
+        user.setPassword(StringUtils.EMPTY);
+        return ServerResponse.createBySuccess(user);
     }
 
 }
