@@ -19,6 +19,7 @@ public class Const {
     }
 
     public interface ProductListOrderBy {
+        //set时间复杂度O(1)，list时间复杂度O(n)
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_asc", "price_desc");
     }
 
