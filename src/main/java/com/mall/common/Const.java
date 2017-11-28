@@ -1,5 +1,9 @@
 package com.mall.common;
 
+import com.google.common.collect.Sets;
+
+import java.util.Set;
+
 /**
  * Created by song on 2017/10/4.
  */
@@ -12,6 +16,10 @@ public class Const {
     public interface Role {
         int ROLE_CUSTOMER = 0; //普通用户
         int ROLE_ADMIN = 1; //管理员
+    }
+
+    public interface ProductListOrderBy {
+        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_asc", "price_desc");
     }
 
     public enum ProductStatusEnum {
