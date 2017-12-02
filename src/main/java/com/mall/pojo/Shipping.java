@@ -5,23 +5,23 @@ import java.util.Date;
 public class Shipping {
     private Integer id;
 
-    private Integer userId;
+    private Integer userId;//用户id
 
-    private String receiverName;
+    private String receiverName;//收货姓名
 
-    private String receiverPhone;
+    private String receiverPhone;//收货固定电话
 
-    private String receiverMobile;
+    private String receiverMobile;//收货移动电话
 
-    private String receiverProvince;
+    private String receiverProvince;//省份
 
-    private String receiverCity;
+    private String receiverCity;//城市
 
-    private String receiverDistrict;
+    private String receiverDistrict;//区/县
 
-    private String receiverAddress;
+    private String receiverAddress;//详细地址
 
-    private String receiverZip;
+    private String receiverZip;//邮编
 
     private Date createTime;
 

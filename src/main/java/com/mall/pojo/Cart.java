@@ -5,13 +5,13 @@ import java.util.Date;
 public class Cart {
     private Integer id;
 
-    private Integer userId;
+    private Integer userId;//用户id
 
-    private Integer productId;
+    private Integer productId;//商品id
 
-    private Integer quantity;
+    private Integer quantity;//数量
 
-    private Integer checked;
+    private Integer checked;//是否选择,1=已勾选,0=未勾选
 
     private Date createTime;
 

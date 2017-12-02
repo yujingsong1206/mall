@@ -6,23 +6,23 @@ import java.util.Date;
 public class Product {
     private Integer id;
 
-    private Integer categoryId;
+    private Integer categoryId;//分类id
 
-    private String name;
+    private String name;//商品名称
 
-    private String subtitle;
+    private String subtitle;//商品副标题
 
-    private String mainImage;
+    private String mainImage;//产品主图
 
-    private String subImages;
+    private String subImages;//商品多图片地址，用逗号（,）隔开
 
-    private String detail;
+    private String detail;//商品详情
 
-    private BigDecimal price;
+    private BigDecimal price;//价格
 
-    private Integer stock;
+    private Integer stock;//库存
 
-    private Integer status;
+    private Integer status;//商品状态.1-在售 2-下架 3-删除
 
     private Date createTime;
 

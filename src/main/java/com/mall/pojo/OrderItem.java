@@ -6,21 +6,21 @@ import java.util.Date;
 public class OrderItem {
     private Integer id;
 
-    private Integer userId;
+    private Integer userId;//用户id
 
-    private Long orderNo;
+    private Long orderNo;//订单号
 
-    private Integer productId;
+    private Integer productId;//商品id
 
-    private String productName;
+    private String productName;//商品名称
 
-    private String productImage;
+    private String productImage;//商品图片地址
 
-    private BigDecimal currentUnitPrice;
+    private BigDecimal currentUnitPrice;//单价
 
-    private Integer quantity;
+    private Integer quantity;//数量
 
-    private BigDecimal totalPrice;
+    private BigDecimal totalPrice;//总价
 
     private Date createTime;
 
