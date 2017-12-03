@@ -209,4 +209,17 @@
     FROM mall_order
     where order_no = #{orderNo}
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mall_order
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mall_order
+    order by create_time desc
+  </select>
 </mapper>
