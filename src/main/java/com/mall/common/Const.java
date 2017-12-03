@@ -118,6 +118,15 @@ public class Const {
         public String getValue() {
             return value;
         }
+
+        public static PaymentTypeEnum codeOf(int code) {
+            for(PaymentTypeEnum paymentTypeEnum : values()) {
+                if(paymentTypeEnum.getCode() == code) {
+                    return paymentTypeEnum;
+                }
+            }
+            throw new RuntimeException("没有找到对应的枚举");
+        }
     }
 
 }
