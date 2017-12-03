@@ -15,7 +15,7 @@ public class OrderItemVo {
     private BigDecimal currentUnitPrice;//单价
     private Integer quantity;//数量
     private BigDecimal totalPrice;//总价
-    private Date createTime;
+    private String createTime;
 
     public Long getOrderNo() {
         return orderNo;
@@ -73,11 +73,11 @@ public class OrderItemVo {
         this.totalPrice = totalPrice;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }
