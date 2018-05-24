@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by song-pc on 2017/11/24.
+ * Created by song-pc
  */
 public class TokenCache{
 
