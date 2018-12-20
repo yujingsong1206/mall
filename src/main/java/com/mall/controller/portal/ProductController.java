@@ -2,12 +2,10 @@ package com.mall.controller.portal;
 
 import com.mall.common.ServerResponse;
 import com.mall.service.IProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by song-pc on 2017/11/28.
@@ -22,6 +20,12 @@ public class ProductController {
     @RequestMapping(value = "detail.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse detail(Integer productId) {
+        return iProductService.getProductDetail(productId);
+    }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse detailRESTful(@PathVariable Integer productId) {
         return iProductService.getProductDetail(productId);
     }
 
