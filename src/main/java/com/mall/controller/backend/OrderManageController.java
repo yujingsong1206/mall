@@ -39,38 +39,42 @@ public class OrderManageController {
                                     @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         //User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(request);
-        if(StringUtils.isEmpty(loginToken)){
-            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.string2Obj(userJsonStr, User.class);
-        if(user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
-        }
-        if(iUserService.checkAdminRole(user).isSuccess()) {
-            return iOrderService.manageList(pageNum, pageSize);
-        }
-        return ServerResponse.createByErrorMessage("无权限操作");
+//        String loginToken = CookieUtil.readLoginToken(request);
+//        if(StringUtils.isEmpty(loginToken)){
+//            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.string2Obj(userJsonStr, User.class);
+//        if(user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
+//        }
+//        if(iUserService.checkAdminRole(user).isSuccess()) {
+//            return iOrderService.manageList(pageNum, pageSize);
+//        }
+//        return ServerResponse.createByErrorMessage("无权限操作");
+        //全部通过拦截器验证是否登陆及权限
+        return iOrderService.manageList(pageNum, pageSize);
     }
 
     @RequestMapping(value = "detail.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse detail(HttpServletRequest request, Long orderNo) {
         //User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(request);
-        if(StringUtils.isEmpty(loginToken)){
-            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.string2Obj(userJsonStr, User.class);
-        if(user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
-        }
-        if(iUserService.checkAdminRole(user).isSuccess()) {
-            return iOrderService.manageDetail(orderNo);
-        }
-        return ServerResponse.createByErrorMessage("无权限操作");
+//        String loginToken = CookieUtil.readLoginToken(request);
+//        if(StringUtils.isEmpty(loginToken)){
+//            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.string2Obj(userJsonStr, User.class);
+//        if(user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
+//        }
+//        if(iUserService.checkAdminRole(user).isSuccess()) {
+//            return iOrderService.manageDetail(orderNo);
+//        }
+//        return ServerResponse.createByErrorMessage("无权限操作");
+        //全部通过拦截器验证是否登陆及权限
+        return iOrderService.manageDetail(orderNo);
     }
 
     @RequestMapping(value = "search.do", method = RequestMethod.GET)
@@ -80,38 +84,42 @@ public class OrderManageController {
                                       @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                       @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         //User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(request);
-        if(StringUtils.isEmpty(loginToken)){
-            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.string2Obj(userJsonStr, User.class);
-        if(user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
-        }
-        if(iUserService.checkAdminRole(user).isSuccess()) {
-            return iOrderService.manageSearch(orderNo, pageNum, pageSize);
-        }
-        return ServerResponse.createByErrorMessage("无权限操作");
+//        String loginToken = CookieUtil.readLoginToken(request);
+//        if(StringUtils.isEmpty(loginToken)){
+//            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.string2Obj(userJsonStr, User.class);
+//        if(user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
+//        }
+//        if(iUserService.checkAdminRole(user).isSuccess()) {
+//            return iOrderService.manageSearch(orderNo, pageNum, pageSize);
+//        }
+//        return ServerResponse.createByErrorMessage("无权限操作");
+        //全部通过拦截器验证是否登陆及权限
+        return iOrderService.manageSearch(orderNo, pageNum, pageSize);
     }
 
     @RequestMapping(value = "send_goods.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse orderSendGoods(HttpServletRequest request, Long orderNo) {
         //User user = (User) session.getAttribute(Const.CURRENT_USER);
-        String loginToken = CookieUtil.readLoginToken(request);
-        if(StringUtils.isEmpty(loginToken)){
-            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
-        }
-        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
-        User user = JsonUtil.string2Obj(userJsonStr, User.class);
-        if(user == null) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
-        }
-        if(iUserService.checkAdminRole(user).isSuccess()) {
-            return iOrderService.manageSendGoods(orderNo);
-        }
-        return ServerResponse.createByErrorMessage("无权限操作");
+//        String loginToken = CookieUtil.readLoginToken(request);
+//        if(StringUtils.isEmpty(loginToken)){
+//            return ServerResponse.createByErrorMessage("用户未登录，无法获取用户的信息");
+//        }
+//        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
+//        User user = JsonUtil.string2Obj(userJsonStr, User.class);
+//        if(user == null) {
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录");
+//        }
+//        if(iUserService.checkAdminRole(user).isSuccess()) {
+//            return iOrderService.manageSendGoods(orderNo);
+//        }
+//        return ServerResponse.createByErrorMessage("无权限操作");
+        //全部通过拦截器验证是否登陆及权限
+        return iOrderService.manageSendGoods(orderNo);
     }
 
 }
