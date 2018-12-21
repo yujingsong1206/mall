@@ -1,10 +1,12 @@
 package com.mall.task;
 
 import com.mall.common.Const;
+import com.mall.common.RedissonManager;
 import com.mall.service.IOrderService;
 import com.mall.util.PropertiesUtil;
 import com.mall.util.RedisShardedPoolUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.redisson.api.RLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sjyjs on 2018/12/20.
@@ -22,6 +25,9 @@ public class CloseOrderTask {
 
     @Autowired
     private IOrderService iOrderService;
+
+    @Autowired
+    private RedissonManager redissonManager;
 
     @PreDestroy
     public void delLock(){
@@ -76,6 +82,29 @@ public class CloseOrderTask {
         }
         logger.info("关闭订单定时任务结束");
     }
+
+//    public void closeOrderTaskV4(){
+//        RLock lock = redissonManager.getRedisson().getLock(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
+//        boolean getLock = false;
+//        try {
+//            getLock = lock.tryLock(0,5, TimeUnit.SECONDS);
+//            if(getLock){
+//                logger.info("Redisson获取到分布式锁:{},ThreadName:{}",Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK,Thread.currentThread().getName());
+//                int hour = Integer.parseInt(PropertiesUtil.getProperty("close.order.task.time.hour", "2"));
+//                iOrderService.closeOrder(hour);
+//            } else {
+//                logger.info("Redisson没获取到分布式锁:{},ThreadName:{}",Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK,Thread.currentThread().getName());
+//            }
+//        } catch (InterruptedException e) {
+//            logger.error("Redisson分布式锁获取异常", e);
+//        } finally {
+//            if(!getLock){
+//                return;
+//            }
+//            lock.unlock();
+//            logger.info("Redisson分布式锁释放锁");
+//        }
+//    }
 
     private void closeOrder(String lockName){
         RedisShardedPoolUtil.expire(lockName, 5);//有效期5s，防止死锁
