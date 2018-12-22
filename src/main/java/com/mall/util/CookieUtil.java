@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtil {
     private static final Logger logger = LoggerFactory.getLogger(CookieUtil.class);
 
-    private final static String COOKIE_DOMAIN = ".yjs.com";
+//    private final static String COOKIE_DOMAIN = ".yjs.com";
     private final static String COOKIE_NAME = "mall_login_token";
 
     public static void writeLoginToken(HttpServletResponse response, String token){
         Cookie ck = new Cookie(COOKIE_NAME, token);
-        ck.setDomain(COOKIE_DOMAIN);
+//        ck.setDomain(COOKIE_DOMAIN);
         ck.setPath("/");
         ck.setHttpOnly(true);
         //单位是秒。
@@ -48,7 +48,7 @@ public class CookieUtil {
         if(cks != null){
             for(Cookie ck : cks){
                 if(StringUtils.equals(ck.getName(), COOKIE_NAME)){
-                    ck.setDomain(COOKIE_DOMAIN);
+//                    ck.setDomain(COOKIE_DOMAIN);
                     ck.setPath("/");
                     ck.setMaxAge(0);//设置为0，代表删除此cookie
                     logger.info("del cookieName:{},cookieValue:{}",ck.getName(),ck.getValue());
