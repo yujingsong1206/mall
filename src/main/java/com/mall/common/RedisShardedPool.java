@@ -21,8 +21,8 @@ public class RedisShardedPool {
 
     private static Integer redis1Port = Integer.parseInt(PropertiesUtil.getProperty("redis1.port"));
     private static String redis1Id = PropertiesUtil.getProperty("redis1.id");
-    private static Integer redis2Port = Integer.parseInt(PropertiesUtil.getProperty("redis2.port"));
-    private static String redis2Id = PropertiesUtil.getProperty("redis2.id");
+//    private static Integer redis2Port = Integer.parseInt(PropertiesUtil.getProperty("redis2.port"));
+//    private static String redis2Id = PropertiesUtil.getProperty("redis2.id");
 
     private static void initPool(){
         JedisPoolConfig config = new JedisPoolConfig();
@@ -34,10 +34,10 @@ public class RedisShardedPool {
         config.setBlockWhenExhausted(true);//连接耗尽的时候，是否阻塞，false会抛异常，true阻塞直到超时。默认为true
         JedisShardInfo info1 = new JedisShardInfo(redis1Id,redis1Port,1000*2);
         //info1.setPassword();
-        JedisShardInfo info2 = new JedisShardInfo(redis2Id,redis2Port,1000*2);
+//        JedisShardInfo info2 = new JedisShardInfo(redis2Id,redis2Port,1000*2);
         List<JedisShardInfo> jedisShardInfoList = new ArrayList<JedisShardInfo>();
         jedisShardInfoList.add(info1);
-        jedisShardInfoList.add(info2);
+//        jedisShardInfoList.add(info2);
         pool = new ShardedJedisPool(config,jedisShardInfoList, Hashing.MURMUR_HASH, Sharded.DEFAULT_KEY_TAG_PATTERN);
     }
 

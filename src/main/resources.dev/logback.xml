@@ -43,6 +43,7 @@
     <logger name="com.mall" additivity="false" level="INFO" >
         <appender-ref ref="mall" />
         <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
     </logger>
 
 
